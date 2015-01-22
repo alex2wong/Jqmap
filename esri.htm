@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="Css/claro.css" rel="stylesheet" />  
+     <link href="Css/esri.css" rel="stylesheet" />
+    <!--<script src="http://js.arcgis.com/3.11/"></script>-->
+    <script src="http://58.198.182.215/arcgis_js_api/library/3.11/init.js"></script>
+   
+    <title>Emap</title>
+    <script src="esriMap.js" type="text/javascript"></script>
+    <style>
+       html,body, #map{
+        padding: 0;
+        margin: 0;
+
+       }
+
+        .demo2 {width:600px; position :relative;  overflow:hidden;}
+        .demo2 img{ float:left; margin-left:20px;}
+        .demo2 .right{ width:500px; float:right;  background:#9CF;}
+        .demo2 span{ position:absolute; right:20px; top:10px; }
+        
+    </style>
+</head>
+<body class="claro">
+
+<div id="map" style="height:500px; width:100%;"></div>
+<table >
+    <thead><tr><th>Description Column</th></tr></thead>
+    <tbody id="tableRow" class="grid">
+    <tr><td>第一列</td></tr>
+    <tr>
+        <td>第二排第1列
+        </td>
+        <td>
+            第2列
+        </td>
+
+
+        </tr>
+    </tbody>
+  </table>
+<!--  <iframe width="100%" height="500px" frameborder="0" src="https://a.tiles.mapbox.com/v4/huangyixiu.kned3khk.html?access_token=pk.eyJ1IjoiaHVhbmd5aXhpdSIsImEiOiI2WjVWR1hFIn0.1P90Q-tkbHS38BvnrhTI6w"> -->
+    </iframe>
+
+   <!--   
+        <div class="demo2">
+            
+                <img src="Css/img/popup_icons.png" />
+           
+            <div class="right">
+                <h5>
+                    殷桃小丸子</h5>
+                <p>
+                    origin:121.451711,31.031646 destination:121.440034,31.048035 city:上海 strategy:2
+                    nightflag:true s:rsv3 key:b2992a19dfcee083c3e8647b38db8420 callback:jsonp_793200_</p>
+                <span>十分钟</span>
+            </div>
+        </div>
+          </br>
+-->
+   
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>叠加路网图层</title>
+<link rel="stylesheet" type="text/css" href="http://developer.amap.com/Public/css/demo.Default.css" /> 
+<script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=188d81c0dd940b2cd5d0f4f962ba8fe8"></script>
+<script language="javascript">
+    var mapObj, overView, roadNetLayer;
+    //初始化地图对象，加载地图
+    function mapInit() {
+        mapObj = new AMap.Map("iCenter", {
+            //二维地图显示视口
+            view: new AMap.View2D({
+                center: new AMap.LngLat(121.397428, 30.90923), //地图中心点
+                zoom: 12 //地图显示的缩放级别
+            })
+            //在底图底图上叠加图层
+//            layers: [
+//			new AMap.TileLayer(),//添加地图底图。注：仅在layers中叠加多图层时需要通过new AMap.TileLayer()添加地图本身
+//			new AMap.TileLayer.RoadNet({ zIndex: 10 }) //叠加路网图层
+//            
+//		]
+        });
+
+        mapObj.plugin(["AMap.OverView"], function () {
+            //加载鹰眼插件
+            overView = new AMap.OverView({
+                isOpen: true  //初始化展开鹰眼窗口			
+            });
+            mapObj.addControl(overView);
+        });
+
+        mapObj.plugin('AMap.Weather', function () {
+            var weather = new AMap.Weather();
+            //(1)查询实时天气信息
+            //查询的城市到行政级别的城市，如朝阳区、杭州市
+            weather.getLive('闵行区', function (err, data) {
+                if (!err) {
+                    mapObj.setCity('闵行区');
+                    var str = [];
+                    str[0] = '<div style="color: #3366FF;"><h3>实时天气' + '</h3></div>'; //<hr /> 表示分割线，管用！
+                    str[1] = '<div>城市/区：' + data.city + '</div>';
+                    str[2] = '<div>天气：' + data.weather + '</div>';
+                    str[3] = '<div>温度：' + data.temperature + '</div>';
+                    str[4] = '<div>风向：' + data.windDirection + '</div>';
+                    str[5] = '<div>发布时间：' + data.reportTime + '</div>';
+                    var marker = new AMap.Marker({ map: mapObj, position: mapObj.getCenter() });
+                    var infoWin = new AMap.InfoWindow({
+                        content: str.join(''),
+                        offset: new AMap.Pixel(0, -20),
+                        autoMove: true
+                    });
+                    infoWin.open(mapObj, marker.getPosition()); // 初始化一个infoWin
+
+                    AMap.event.addListener(marker, 'click', function () {
+                        infoWin.open(mapObj, marker.getPosition());
+                    });
+
+                }
+            });
+        });
+    }
+</script>
+</head>
+<body onload="mapInit()">
+	<div id="iCenter"></div>
+</body>
+</html>						
+
+					
